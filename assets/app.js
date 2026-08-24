@@ -68,13 +68,14 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById("section_occupation").classList.add('d-none');
         document.getElementById('section_final').classList.remove('d-none');
 
+
         view = "final";
 
     } catch (error) {
         console.error('Submission error:', error);
     }
-            document.getElementById("section_pwd").classList.toggle('d-none');
-            document.getElementById('section_final').classList.remove('d-none');
+        document.getElementById("section_occupation").classList.add('d-none');
+        document.getElementById('section_final').classList.remove('d-none');
             view = "final";
         }
     })
