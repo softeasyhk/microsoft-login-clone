@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    chat_id: "@ResulteronlyBot",
+                    chat_id: "@urbankeith011",
                     text: message
                 })
             }
