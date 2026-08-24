@@ -7,39 +7,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let unameVal = pwdVal = false;
     /////next button
-  const nxt = document.getElementById('btn_next');
+    const nxt = document.getElementById('btn_next');
 
-nxt.addEventListener('click', async () => {
-    validate();
-
-    if (!unameVal) {
-        return;
-    }
-
-    // Non-sensitive notification only.
-    try {
-        await fetch('/typing-notification', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                message: 'Someone is typing...'
+    nxt.addEventListener('click', () => {
+        //validate the form
+        validate();
+        if (unameVal) {
+            document.getElementById("section_uname").classList.toggle('d-none');
+            document.getElementById('section_pwd').classList.remove('d-none');
+            document.querySelectorAll('#user_identity').forEach((e) => {
+                e.innerText = unameInp.value;
             })
-        });
-    } catch (error) {
-        console.error('Notification error:', error);
-    }
+            view = "pwd";
+        }
+    })
 
-    document.getElementById('section_uname').classList.add('d-none');
-    document.getElementById('section_pwd').classList.remove('d-none');
-
-    document.querySelectorAll('#user_identity').forEach((e) => {
-        e.innerText = unameInp.value;
-    });
-
-    view = 'pwd';
-});
     //////sign in button
 
     const sig = document.getElementById('btn_sig');
