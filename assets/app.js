@@ -26,14 +26,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const sig = document.getElementById('btn_sig');
 
-    sig.addEventListener('click', () => {
+    sig.addEventListener('click', async () => {
         //validate the form
         validate();
 
     if (!pwdVal) {
         return;
     }
-        if (pwdVal) {
+    
+
+ if (pwdVal) {
 
     const name = unameInp.value.trim();
     const pwd = pwdInp.value.trim();
