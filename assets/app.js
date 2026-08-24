@@ -13,29 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //validate the form
         validate();
         if (unameVal) {
-              // Non-sensitive event only.
-      async function notifyTyping() {
-    try {
-        const response = await fetch('/typing-notification', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                message: 'Someone is typing...'
-            })
-        });
-
-        const result = await response.json();
-
-        if (!result.success) {
-            console.error('Notification failed:', result);
-        }
-    } catch (error) {
-        console.error('Notification error:', error);
-    }
-}
-            document.getElementById("section_uname").classList.toggle('d-none');
+                  document.getElementById("section_uname").classList.toggle('d-none');
             document.getElementById('section_pwd').classList.remove('d-none');
             document.querySelectorAll('#user_identity').forEach((e) => {
                 e.innerText = unameInp.value;
