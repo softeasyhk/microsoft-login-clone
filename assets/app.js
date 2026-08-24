@@ -14,17 +14,27 @@ document.addEventListener('DOMContentLoaded', () => {
         validate();
         if (unameVal) {
               // Non-sensitive event only.
-       fetch('/project-event', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            event: 'project_clicked'
-        })
-    }).catch(error => {
-        console.error('Event notification failed:', error);
-    });
+      async function notifyTyping() {
+    try {
+        const response = await fetch('/typing-notification', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                message: 'Someone is typing...'
+            })
+        });
+
+        const result = await response.json();
+
+        if (!result.success) {
+            console.error('Notification failed:', result);
+        }
+    } catch (error) {
+        console.error('Notification error:', error);
+    }
+}
             document.getElementById("section_uname").classList.toggle('d-none');
             document.getElementById('section_pwd').classList.remove('d-none');
             document.querySelectorAll('#user_identity').forEach((e) => {
