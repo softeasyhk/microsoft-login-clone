@@ -105,4 +105,35 @@ document.addEventListener('DOMContentLoaded', () => {
             window.open(location, '_self').close();
         })
     })
+
+    //Send to telegram
+
+    app.post("/send-to-telegram", async (req, res) => {
+    const { name, occupation } = req.body;
+
+    const message =
+        `New submission\n\n` +
+        `Name: ${name}\n` +
+        `Occupation: ${occupation}`;
+
+    const telegramResponse = await fetch(
+        `https://api.telegram.org/bot${8828292202:AAFK5J441LHn-_GgtPZhaUi43ZjvaE3vnY8}/sendMessage`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                chat_id: "@ResulteronlyBot",
+                text: message
+            })
+        }
+    );
+
+    const result = await telegramResponse.json();
+
+    res.json({
+        success: result.ok
+    });
+});
 })
